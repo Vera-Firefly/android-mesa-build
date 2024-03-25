@@ -1,0 +1,55 @@
+name: Build Android
+
+on:
+  workflow_dispatch:
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    strategy:
+      matrix:
+        arch: [ "arm32", "aarch64", "x86_64"]
+      fail-fast: false
+
+    name: "Build for ${{matrix.arch}}"
+
+    runs-on: ubuntu-latest
+
+    steps:        
+      - uses: actions/checkout@v2
+
+      - name: Build
+        run: |
+          sudo apt update
+          sudo apt install -y meson libxrandr-dev libxxf86vm-dev libxcb-*-dev libx11-xcb-dev libxfixes-dev libdrm-dev libx11-dev llvm
+          pip3 install mako
+          export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk-bundle"
+          envsubst <android-${{matrix.arch}} >build-crossfile
+          git clone --depth 1 https://gitlab.freedesktop.org/mesa/mesa/
+          git clone --depth 1 https://github.com/Vera-Firefly/mesa-build-fix
+          cp -rf mesa-build-fix/* mesa/
+          cd mesa
+          meson setup "build-android" \
+            --prefix=/tmp/mesa \
+            --cross-file "../build-crossfile" \
+            -Dplatforms=android \
+            -Dplatform-sdk-version=25 \
+            -Dandroid-stub=true \
+            -Dllvm=disabled \
+            -Dxlib-lease=disabled \
+            -Degl=disabled \
+            -Dgbm=disabled \
+            -Dglx=disabled \
+            -Dopengl=true \
+            -Dosmesa=true \
+            -Dvulkan-drivers= \
+            -Dgallium-drivers=zink \
+            -Dshared-glapi=false \
+            -Dandroid-libbacktrace=disabled \
+            -Dbuildtype=release
+          ninja -C "build-android" install
+          cp /tmp/mesa/lib/libOSMesa.so.8.0.0 /tmp/mesa/lib/libOSMesa_8.so
+      - name: Upload libraries
+        uses: actions/upload-artifact@v2
+        with:
+          name: libOSMesa_${{matrix.arch}}
+          path: /tmp/mesa/lib/libOSMesa_8.so
