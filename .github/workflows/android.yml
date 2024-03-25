@@ -47,12 +47,13 @@ jobs:
           cp -rf mesa-build-fix/* mesa/
           cd mesa
           meson setup "build-android" \
-            --prefix=/tmp/mesa \
+            ---prefix=/tmp/mesa \
             --cross-file "../build-crossfile" \
             -Dplatforms=android \
             -Dplatform-sdk-version=25 \
             -Dandroid-stub=true \
-            -Dllvm=disabled \
+            -Dandroid-libbacktrace=disabled \
+            -Dandroid-strict=false \
             -Dxlib-lease=disabled \
             -Degl=disabled \
             -Dgbm=disabled \
@@ -60,10 +61,9 @@ jobs:
             -Dopengl=true \
             -Dosmesa=true \
             -Dvulkan-drivers= \
-            -Dgallium-drivers=zink,freedreno \
-            -Dshared-glapi=false \
-            -Dandroid-libbacktrace=disabled \
+            -Dgallium-drivers=freedreno,zink \
             -Dfreedreno-kmds=kgsl \
+            -Dshared-glapi=false \
             -Dbuildtype=release
           ninja -C "build-android" install
           cp /tmp/mesa/lib/libOSMesa.so.8.0.0 /tmp/mesa/lib/libOSMesa_8.so
