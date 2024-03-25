@@ -30,7 +30,6 @@ jobs:
             --prefix=/tmp/drm-static \
             --cross-file "../build-crossfile-drm" \
             -Ddefault_library=static \
-            -Dllvm=disabled \
             -Dintel=disabled \
             -Dradeon=disabled \
             -Damdgpu=disabled \
@@ -59,6 +58,7 @@ jobs:
             -Degl=disabled \
             -Dgbm=disabled \
             -Dglx=disabled \
+            -Dllvm=disabled \
             -Dopengl=true \
             -Dosmesa=true \
             -Dvulkan-drivers= \
