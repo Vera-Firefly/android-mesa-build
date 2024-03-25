@@ -47,7 +47,7 @@ jobs:
           cp -rf mesa-build-fix/* mesa/
           cd mesa
           meson setup "build-android" \
-            ---prefix=/tmp/mesa \
+            --prefix=/tmp/mesa \
             --cross-file "../build-crossfile" \
             -Dplatforms=android \
             -Dplatform-sdk-version=25 \
