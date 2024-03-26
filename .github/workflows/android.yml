@@ -42,7 +42,7 @@ jobs:
           ninja -C "build-android" install
           cd ..
           envsubst <android-${{matrix.arch}} >build-crossfile
-          git clone --depth 1 --branch mesa-24.0.3 https://gitlab.freedesktop.org/mesa/mesa/
+          git clone --depth 1 --branch 24.0 https://gitlab.freedesktop.org/mesa/mesa
           git clone --depth 1 --branch test https://github.com/Vera-Firefly/mesa-build-fix
           cp -rf mesa-build-fix/* mesa/
           cd mesa
