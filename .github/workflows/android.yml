@@ -43,7 +43,7 @@ jobs:
           cd ..
           envsubst <android-${{matrix.arch}} >build-crossfile
           git clone --depth 1 --branch mesa-24.1.4 https://gitlab.freedesktop.org/mesa/mesa
-          git clone --depth 1 --branch 24.1.4 https://github.com/Vera-Firefly/mesa-build-fix
+          git clone --depth 1 --branch test https://github.com/Vera-Firefly/mesa-build-fix
           cp -rf mesa-build-fix/* mesa/
           cd mesa
           meson setup "build-android" \
@@ -62,7 +62,7 @@ jobs:
             -Dopengl=true \
             -Dosmesa=true \
             -Dvulkan-drivers= \
-            -Dgallium-drivers=freedreno,zink \
+            -Dgallium-drivers=panfrost,freedreno,zink \
             -Dfreedreno-kmds=kgsl,msm \
             -Dshared-glapi=false \
             -Dbuildtype=release
