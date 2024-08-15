@@ -43,7 +43,7 @@ jobs:
           cd ..
           envsubst <android-${{matrix.arch}} >build-crossfile
           git clone --branch mesa-24.2.0 https://gitlab.freedesktop.org/mesa/mesa
-          git clone --branch test https://github.com/Vera-Firefly/mesa-build-fix
+          git clone --branch 24.2.0 https://github.com/Vera-Firefly/mesa-build-fix
           cp -rf mesa-build-fix/* mesa/
           cd mesa
           meson setup "build-android" \
