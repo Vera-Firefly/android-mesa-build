@@ -24,7 +24,7 @@ jobs:
           pip3 install mako meson ninja
           export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk-bundle"
           envsubst <android-drm-${{matrix.arch}} >build-crossfile-drm
-          git clone --depth 1 https://gitlab.freedesktop.org/mesa/drm.git
+          git clone https://gitlab.freedesktop.org/mesa/drm.git
           cd drm
           meson setup "build-android" \
             --prefix=/tmp/drm-static \
@@ -43,7 +43,7 @@ jobs:
           cd ..
           envsubst <android-${{matrix.arch}} >build-crossfile
           git clone --branch mesa-24.3.0 https://gitlab.freedesktop.org/mesa/mesa
-          git clone --branch test https://github.com/Vera-Firefly/mesa-build-fix
+          git clone --branch 24.3.0 https://github.com/Vera-Firefly/mesa-build-fix
           cp -rf mesa-build-fix/* mesa/
           cd mesa
           meson setup "build-android" \
