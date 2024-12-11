@@ -7,5 +7,6 @@
 - 暂时不提供本地构建方案
 - 预计: 没有计划
 # 使用的库来源
-- [Mesa3D](https://gitlab.freedesktop.org/mesa/mesa): 
-- [Mesa Drm](https://gitlab.freedesktop.org/mesa/drm): 
+- [Mesa3D](https://gitlab.freedesktop.org/mesa/mesa): [MIT License](https://docs.mesa3d.org/license.html).
+- [Mesa Drm](https://gitlab.freedesktop.org/mesa/drm): [MIT License](https://docs.mesa3d.org/license.html).
+- [mesa-build-fix](https://github.com/Vera-Firefly/mesa-build-fix): [MIT License or GNU GPLv3 License](https://github.com/Vera-Firefly/mesa-build-fix/blob/master/README.md)
