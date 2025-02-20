@@ -73,6 +73,7 @@ jobs:
             -Degl=disabled \
             -Dgbm=disabled \
             -Dglx=disabled \
+            -Dllvm=enabled \
             -Dopengl=true \
             -Dosmesa=true \
             -Dvulkan-drivers= \
