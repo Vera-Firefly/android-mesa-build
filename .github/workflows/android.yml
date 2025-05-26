@@ -78,12 +78,12 @@ jobs:
             -Dgbm=disabled \
             -Dglx=disabled \
             -Dllvm=disabled \
+            -Dgallium-opencl=disabled \
             -Dopengl=true \
             -Dvulkan-drivers= \
-            -Dgallium-drivers=zink,panfrost,freedreno \
-            -Dgallium-opencl=disabled \
-            -Dfreedreno-kmds=kgsl,msm \
             -Dtools=drm-shim \
+            -Dgallium-drivers=zink,panfrost,freedreno \
+            -Dfreedreno-kmds=kgsl,msm \
             -Dbuildtype=release
           ninja -C "build-android" install
           mkdir /tmp/mesa/output
