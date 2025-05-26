@@ -79,6 +79,7 @@ jobs:
             -Dglx=disabled \
             -Dllvm=disabled \
             -Dgallium-opencl=disabled \
+            -Dmesa-clc=system \
             -Dopengl=true \
             -Dvulkan-drivers= \
             -Dtools=drm-shim \
