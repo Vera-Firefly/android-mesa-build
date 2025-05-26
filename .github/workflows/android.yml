@@ -81,7 +81,7 @@ jobs:
             -Dopengl=true \
             -Dvulkan-drivers= \
             -Dgallium-drivers=zink,panfrost,freedreno \
-            -Dgallium-opencl = disabled \
+            -Dgallium-opencl=disabled \
             -Dfreedreno-kmds=kgsl,msm \
             -Dtools=drm-shim \
             -Dbuildtype=release
