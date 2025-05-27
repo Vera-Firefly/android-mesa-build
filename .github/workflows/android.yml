@@ -46,7 +46,7 @@ jobs:
 
       - name: Build
         run: |
-          envsubst <android-drm-${{matrix.arch}} >build-crossfile-drm
+          envsubst <android-drm-${{matrix.arch}}>build-crossfile-drm
           cd drm
           meson setup "build-android" \
             --prefix=/tmp/drm-static \
@@ -79,6 +79,7 @@ jobs:
             -Dglx=disabled \
             -Dllvm=disabled \
             -Dopengl=true \
+            -Dosmesa=true \
             -Dvulkan-drivers= \
             -Dtools=drm-shim \
             -Dgallium-drivers=zink,freedreno \
