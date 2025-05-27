@@ -2,7 +2,7 @@
 ndk = '${WORK_DIR}/${NDK_VER}' + '/toolchains/llvm/prebuilt/linux-x86_64/bin'
 ar = ndk + '/llvm-ar'
 c = ['ccache', ndk + '/x86_64-linux-android${SDK_VER}-clang', '-O3', '-DVK_USE_PLATFORM_ANDROID_KHR', '-fPIC', '-fno-emulated-tls']
-cpp = ['ccache', ndk + '/x86_64-linux-android${SDK_VER}-clang++', '-O3', '-DVK_USE_PLATFORM_ANDROID_KHR', '-fPIC', '-fno-exceptions', '-fno-unwind-tables', '-fno-asynchronous-unwind-tables', '-static-libstdc++', '-fno-emulated-tls', '-Wno-c++11-narrowing']
+cpp = ['ccache', ndk + '/x86_64-linux-android${SDK_VER}-clang++', '-O3', '-DVK_USE_PLATFORM_ANDROID_KHR', '-fPIC', '-fno-exceptions', '-fno-unwind-tables', '-fno-asynchronous-unwind-tables', '-static-libstdc++', '-fno-emulated-tls', '--end-no-unused-arguments', '-Wno-c++11-narrowing']
 c_ld = 'lld'
 cpp_ld = 'lld'
 strip = ndk + '/x86_64-linux-android-strip'
