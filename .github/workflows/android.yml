@@ -89,12 +89,12 @@ jobs:
           ninja -C "build-android" install
           mkdir /tmp/mesa/output
           mkdir /tmp/mesa/drm_shim
-          cp /tmp/mesa/lib/libOSMesa.so /tmp/mesa/output/libOSMesa_8.so
-          cp /tmp/mesa/lib/libxatracker.so /tmp/mesa/output/libxatracker.so
-          cp /tmp/mesa/lib/libfreedreno_noop_drm_shim.so /tmp/mesa/drm_shim/libfreedreno_noop_drm_shim.so
-          cp /tmp/mesa/lib/libpanfrost_noop_drm_shim.so /tmp/mesa/drm_shim/libpanfrost_noop_drm_shim.so
           cd /tmp/mesa/lib
           ls -a
+          cp libOSMesa.so /tmp/mesa/output/libOSMesa_8.so
+          cp libxatracker.so /tmp/mesa/output/libxatracker.so
+          cp libfreedreno_noop_drm_shim.so /tmp/mesa/drm_shim/libfreedreno_noop_drm_shim.so
+          # cp libpanfrost_noop_drm_shim.so /tmp/mesa/drm_shim/libpanfrost_noop_drm_shim.so
 
       - name: Upload Mesa libraries
         uses: actions/upload-artifact@v4
