@@ -81,7 +81,7 @@ jobs:
             -Dopengl=true \
             -Dvulkan-drivers= \
             -Dtools=drm-shim \
-            -Dgallium-drivers=zink,panfrost,freedreno \
+            -Dgallium-drivers=zink,freedreno \
             -Dfreedreno-kmds=kgsl,msm \
             -Dbuildtype=release
           ninja -C "build-android" install
