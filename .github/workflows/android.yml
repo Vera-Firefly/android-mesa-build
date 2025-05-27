@@ -80,6 +80,7 @@ jobs:
             -Dllvm=disabled \
             -Dopengl=true \
             -Dosmesa=true \
+            -Dshared-glapi=false \
             -Dvulkan-drivers= \
             -Dtools=drm-shim \
             -Dgallium-drivers=zink,freedreno \
