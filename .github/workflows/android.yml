@@ -26,20 +26,26 @@ jobs:
       - name: Set ndkver,sdkver and work_dir
         run: |
           echo "NDK_VER=android-ndk-r27c" >> $GITHUB_ENV
-          echo "SDK_VER=33" >> $GITHUB_ENV
+          echo "SDK_VER=29" >> $GITHUB_ENV
           echo "WORK_DIR=$(pwd)" >> $GITHUB_ENV
 
-      - name: Download and extract NDK
+      - name: Download and extract NDK/Mesa
         run: |
           echo "Downloading android-ndk from google server ..."
           curl https://dl.google.com/android/repository/${NDK_VER}-linux.zip --output ${NDK_VER}-linux.zip &> /dev/null
           echo "Extracting android-ndk to a folder ..."
           unzip ${NDK_VER}-linux.zip &> /dev/null
+          echo "Get Mesa Repository ..."
+          git clone https://gitlab.freedesktop.org/mesa/drm.git
+          git clone --depth 1 --branch mesa-25.1.1 https://gitlab.freedesktop.org/mesa/mesa.git
+          git clone --depth 1 --branch 25.1.1 https://github.com/Vera-Firefly/mesa-build-fix.git
+          echo "Extracting Build Fix to Mesa Repository ..."
+          cp -rf mesa-build-fix/* mesa/
+          echo "Ready!!!"
 
       - name: Build
         run: |
-          envsubst <android-drm-${{matrix.arch}} >build-crossfile-drm
-          git clone https://gitlab.freedesktop.org/mesa/drm.git
+          envsubst <android-drm-${{matrix.arch}}>build-crossfile-drm
           cd drm
           meson setup "build-android" \
             --prefix=/tmp/drm-static \
@@ -56,10 +62,7 @@ jobs:
             -Dfreedreno-kgsl=true
           ninja -C "build-android" install
           cd ..
-          envsubst <android-${{matrix.arch}} >build-crossfile
-          git clone https://gitlab.freedesktop.org/mesa/mesa
-          git clone https://github.com/Vera-Firefly/mesa-build-fix
-          cp -rf mesa-build-fix/* mesa/
+          envsubst <android-${{matrix.arch}}>build-crossfile
           cd mesa
           meson setup "build-android" \
             --prefix=/tmp/mesa \
@@ -76,11 +79,11 @@ jobs:
             -Dllvm=disabled \
             -Dopengl=true \
             -Dosmesa=true \
-            -Dvulkan-drivers= \
-            -Dgallium-drivers=panfrost,freedreno,zink \
-            -Dfreedreno-kmds=kgsl,msm \
             -Dshared-glapi=false \
+            -Dvulkan-drivers= \
             -Dtools=drm-shim \
+            -Dgallium-drivers=zink,freedreno \
+            -Dfreedreno-kmds=kgsl,msm \
             -Dbuildtype=release
           ninja -C "build-android" install
           mkdir /tmp/mesa/output
