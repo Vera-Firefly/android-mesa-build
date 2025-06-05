@@ -37,8 +37,8 @@ jobs:
           unzip ${NDK_VER}-linux.zip &> /dev/null
           echo "Get Mesa Repository ..."
           git clone https://gitlab.freedesktop.org/mesa/drm.git
-          git clone --depth 1 --branch mesa-25.1.1 https://gitlab.freedesktop.org/mesa/mesa.git
-          git clone --depth 1 --branch master https://github.com/Vera-Firefly/mesa-build-fix.git
+          git clone --depth 1 --branch mesa-25.1.2 https://gitlab.freedesktop.org/mesa/mesa.git
+          git clone --depth 1 --branch test https://github.com/Vera-Firefly/mesa-build-fix.git
           echo "Extracting Build Fix to Mesa Repository ..."
           cp -rf mesa-build-fix/* mesa/
           echo "Ready!!!"
