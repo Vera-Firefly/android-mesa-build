@@ -9,6 +9,6 @@ strip = ndk + '/aarch64-linux-android-strip'
 pkgconfig = ['env', 'PKG_CONFIG_LIBDIR=.:/tmp/drm-static/lib/pkgconfig', '/usr/bin/pkg-config']
 [host_machine]
 system = 'android'
-cpu_family = 'arm'
+cpu_family = 'aarch64'
 cpu = 'armv8'
 endian = 'little'
