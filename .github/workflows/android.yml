@@ -80,7 +80,6 @@ jobs:
             -Dglx=disabled \
             -Dllvm=enabled \
             -Dshared-llvm=auto \
-            -Dllvm-version=auto \
             -Dopengl=true \
             -Dosmesa=true \
             -Dvulkan-drivers= \
