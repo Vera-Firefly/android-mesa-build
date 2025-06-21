@@ -6,7 +6,7 @@ cpp = ['ccache', ndk + '/aarch64-linux-android${SDK_VER}-clang++', '-O3', '-DVK_
 c_ld = 'lld'
 cpp_ld = 'lld'
 strip = ndk + '/aarch64-linux-android-strip'
-pkgconfig = ['env', 'PKG_CONFIG_LIBDIR=.:/tmp/drm-static/lib/pkgconfig', '/usr/bin/pkg-config']
+pkgconfig = ['env', 'PKG_CONFIG_LIBDIR=.:/tmp/drm-static/lib/pkgconfig:/usr/lib/pkgconfig', '/usr/bin/pkg-config']
 [host_machine]
 system = 'android'
 cpu_family = 'aarch64'
